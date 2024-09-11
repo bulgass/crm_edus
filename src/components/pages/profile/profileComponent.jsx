@@ -94,22 +94,30 @@ const ProfileComponent = () => {
     }
   };
 
-  // Fetch tasks lazily
   const fetchTasks = async () => {
-    const userId = auth.currentUser ? auth.currentUser.uid : '';
-    if (userId) {
-      setIsLoadingTasks(true);
-      const taskRef = doc(db, 'tasks', userId);
-      const docSnap = await getDoc(taskRef);
-      if (docSnap.exists()) {
-        const tasksData = docSnap.data().tasks || [];
-        setTasks(tasksData);
-        const statuses = tasksData.reduce((acc, task) => {
-          acc[task.name] = task.status || 'in progress';
-          return acc;
-        }, {});
-        setTaskStatus(statuses);
+    try {
+      const userId = auth.currentUser ? auth.currentUser.uid : '';
+      if (userId) {
+        console.log('Fetching tasks for userId:', userId);
+        setIsLoadingTasks(true);
+        const taskRef = doc(db, 'tasks', userId);
+        const docSnap = await getDoc(taskRef);
+        if (docSnap.exists()) {
+          const tasksData = docSnap.data().tasks || [];
+          console.log('Tasks data:', tasksData);
+          setTasks(tasksData);
+          const statuses = tasksData.reduce((acc, task) => {
+            acc[task.name] = task.status || 'in progress';
+            return acc;
+          }, {});
+          setTaskStatus(statuses);
+        } else {
+          console.log('No tasks document found for userId:', userId);
+        }
+        setIsLoadingTasks(false);
       }
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
       setIsLoadingTasks(false);
     }
   };
