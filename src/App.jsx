@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useAuth } from './providers/authprovider/AuthProvider';
-import Login from "./components/pages/auth/Login/login";
-import Signup from "./components/pages/auth/Signup/signup";
-import Home from "./components/homepage";
+import { useAuth } from './providers/authProvider/authProvider';
+import Login from "./components/pages/auth/login/login";
+import Signup from "./components/pages/auth/signup/signup";
+import Home from "./components/pages/home/homepage";
 
 function App() {
   const { user } = useAuth();
