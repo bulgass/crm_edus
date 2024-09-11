@@ -4,6 +4,7 @@ import { useAuth } from './providers/authProvider/authProvider';
 import Login from "./components/pages/auth/login/login";
 import Signup from "./components/pages/auth/signup/signup";
 import Home from "./components/pages/home/homepage";
+import Profile from './components/pages/profile/profile';
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/signup" element={<Navigate to="/" />} />
+              <Route path="/profile" element={<Profile />} /> {/* Используем компонент Profile */}
             </>
           ) : (
             <>
