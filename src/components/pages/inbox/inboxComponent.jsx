@@ -182,7 +182,7 @@ const InboxComponent = () => {
               </Button>
             </div>
           )}
-          {activeTab === 2 && (
+          {activeTab === 2 && userRole === 'admin' && (
             <>
               <h4>Sent Messages</h4>
               {sentMessages.length === 0 ? (
