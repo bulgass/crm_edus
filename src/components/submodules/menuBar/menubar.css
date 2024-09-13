@@ -1,52 +1,91 @@
 .sidebar {
-    height: calc(100vh - 2rem);
-    width: 20rem;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #3f3f3f;
-  }
-  
-  .sidebar-header {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-  }
-  
-  .sidebar-header h5 {
-    color: #000000;
-  }
-  
-  .sidebar-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar-item {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sidebar-item:hover {
-    background-color: #616161;
-  }
-  
-  .sidebar-icon {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
-  }
-  
-  .sidebar-badge {
-    background-color: #007bff;
-    color: #030303;
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    margin-left: auto;
-  }
-  
+  height: calc(100vh - 2rem);
+  width: 20rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #3f3f3f;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.sidebar.closed {
+  width: 4rem;
+  padding: 1rem 0;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  background-color: #3f3f3f;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.sidebar-header {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.sidebar-header h5 {
+  color: #ffffff;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #616161;
+}
+
+.sidebar-icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.sidebar.closed .sidebar-icon {
+  margin-right: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.sidebar-item span + span {
+  display: none;
+}
+
+.sidebar.open .sidebar-item span + span {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.sidebar-badge {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  margin-left: auto;
+}

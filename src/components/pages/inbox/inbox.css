@@ -1,3 +1,7 @@
+h1, h2, h3, h4{
+    text-align: left;
+}
+
 .Page {
     width: 100%;
     margin: 0 auto;

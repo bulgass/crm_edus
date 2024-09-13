@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './menubar.css';
 import { useAuth } from '../../../providers/authProvider/authProvider';
 import { useNavigate } from 'react-router';
 
 export const MenuBar = () => {
+  const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
   const { logout, userRole } = useAuth(); 
 
@@ -23,38 +24,46 @@ export const MenuBar = () => {
   const handleUsersClick = () => {
     navigate('/check-users'); 
   };
-  const handlinboxClick = () =>{
-    navigate('/inbox')
-  }
+
+  const handleInboxClick = () =>{
+    navigate('/inbox');
+  };
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <button className="toggle-button" onClick={toggleSidebar}>
+        {isOpen ? '❮' : '❯'}
+      </button>
       <ul className="sidebar-list">
-        <li className="sidebar-item">
+        <li className="sidebar-item" onClick={handleProfileClick}>
           <span className="sidebar-icon">📊</span>
-          Dashboard
+          {isOpen && 'Dashboard'}
         </li>
-        <li className="sidebar-item" onClick={handlinboxClick}>
+        <li className="sidebar-item" onClick={handleInboxClick}>
           <span className="sidebar-icon">📥</span>
-          Inbox
+          {isOpen && 'Inbox'}
         </li>
         <li className="sidebar-item" onClick={handleProfileClick}>
           <span className="sidebar-icon">👤</span>
-          Profile
+          {isOpen && 'Profile'}
         </li>
         <li className="sidebar-item">
           <span className="sidebar-icon">⚙️</span>
-          Settings
+          {isOpen && 'Settings'}
         </li>
-        {userRole === 'admin' && ( 
+        {userRole === 'admin' && (
           <li className="sidebar-item" onClick={handleUsersClick}>
             <span className="sidebar-icon">👥</span>
-            Users
+            {isOpen && 'Users'}
           </li>
         )}
         <li className="sidebar-item" onClick={handleLogout}>
           <span className="sidebar-icon">🔒</span>
-          Log Out
+          {isOpen && 'Log Out'}
         </li>
       </ul>
     </div>
