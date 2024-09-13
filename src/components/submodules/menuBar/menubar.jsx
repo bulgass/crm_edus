@@ -21,7 +21,7 @@ export const MenuBar = () => {
   };
 
   const handleUsersClick = () => {
-    navigate('/checkUsers'); 
+    navigate('/check-users'); 
   };
 
   return (

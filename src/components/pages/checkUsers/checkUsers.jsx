@@ -2,25 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase'; 
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../../providers/authProvider/authProvider';
+import "./checkUsers.css";
 
 const CheckUsers = () => {
-  console.log('CheckUsers component rendered');
-  
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { currentUser } = useAuth();
+  const { currentUser, userRole } = useAuth(); 
 
   useEffect(() => {
     const fetchUsers = async () => {
+      if (userRole !== 'admin') {
+        console.error('Access denied: User is not an admin.');
+        setLoading(false);
+        return;
+      }
+
       try {
-        if (currentUser && currentUser.role === 'admin') {
-          const usersCollectionRef = collection(db, 'users');
-          const userSnapshot = await getDocs(usersCollectionRef);
-          const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setUsers(userList);
-        } else {
-          console.error('Access denied: User is not an admin.');
-        }
+        const usersCollectionRef = collection(db, 'users');
+        const userSnapshot = await getDocs(usersCollectionRef);
+        const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        console.log('Loaded users:', userList);
+
+        setUsers(userList);
       } catch (error) {
         console.error('Error fetching users:', error);
       } finally {
@@ -29,7 +33,7 @@ const CheckUsers = () => {
     };
 
     fetchUsers();
-  }, [currentUser]);
+  }, [userRole]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -38,24 +42,28 @@ const CheckUsers = () => {
   return (
     <div>
       <h2>Registered Users</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
+      {users.length === 0 ? (
+        <div>No users found.</div>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>{user.username || 'No username'}</td>
+                <td>{user.email || 'No email'}</td>
+                <td>{user.role || 'No role'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
