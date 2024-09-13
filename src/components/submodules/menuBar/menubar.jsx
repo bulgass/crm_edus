@@ -23,6 +23,9 @@ export const MenuBar = () => {
   const handleUsersClick = () => {
     navigate('/check-users'); 
   };
+  const handlinboxClick = () =>{
+    navigate('/inbox')
+  }
 
   return (
     <div className="sidebar">
@@ -34,7 +37,7 @@ export const MenuBar = () => {
           <span className="sidebar-icon">📊</span>
           Dashboard
         </li>
-        <li className="sidebar-item">
+        <li className="sidebar-item" onClick={handlinboxClick}>
           <span className="sidebar-icon">📥</span>
           Inbox
         </li>

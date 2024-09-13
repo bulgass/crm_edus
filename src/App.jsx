@@ -6,6 +6,7 @@ import Signup from "./components/pages/auth/signup/signup";
 import Home from "./components/pages/home/homepage";
 import Profile from './components/pages/profile/profile';
 import CheckUsers from './components/pages/checkUsers/checkUsers'; 
+import Inbox from './components/pages/inbox/inbox';
 import "./App.css";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               {userRole === 'admin' && (
                 <Route path="/check-users" element={<CheckUsers />} />
               )}
+              <Route path="/inbox" element={<Inbox/>} />
             </>
           ) : (
             <>

@@ -1,0 +1,10 @@
+h1, h3{
+   text-align: left;
+}
+
+.MessageBlock{
+    height: auto;
+    width: 80%;
+    border-radius: 10px;
+    background-color: rgb(233, 232, 232);
+}
