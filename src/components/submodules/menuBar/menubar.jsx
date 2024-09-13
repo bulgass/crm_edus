@@ -29,9 +29,6 @@ export const MenuBar = () => {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-header">
-        <h2 className="sidebar-title">Sidebar</h2>
-      </div>
       <ul className="sidebar-list">
         <li className="sidebar-item">
           <span className="sidebar-icon">📊</span>

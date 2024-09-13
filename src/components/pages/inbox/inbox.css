@@ -1,10 +1,95 @@
-h1, h3{
-   text-align: left;
-}
-
-.MessageBlock{
+.Page {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .Top {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .MainContent {
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  .MessageBlock {
     height: auto;
     width: 80%;
     border-radius: 10px;
-    background-color: rgb(233, 232, 232);
-}
+    background-color: rgb(218, 218, 218);
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .MessageList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .MessageItem {
+    background-color: rgb(197, 197, 197);
+    border-bottom: 1px solid #686868;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .MessageItem:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .MessageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .MessageDetails {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .MessageDate {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .MessageContent {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .MessageItem.active .MessageContent {
+    display: block;
+  }
+  
+  .status-toggle {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .status-toggle.in-progress {
+    background-color: #007bff;
+  }
+  
+  .status-toggle.done {
+    background-color: #28a745;
+  }
+  
+  .status-toggle:hover {
+    opacity: 0.8;
+  }
+  

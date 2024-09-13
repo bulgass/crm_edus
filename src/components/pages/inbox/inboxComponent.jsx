@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs, Tab, TextField, Button } from '@mui/material';
 import { db } from '../../../firebase';
-import { collection, getDocs, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, query, where, doc } from 'firebase/firestore';
 import { useAuth } from '../../../providers/authProvider/authProvider';
 import "./inbox.css";
 
 const InboxComponent = () => {
-  const [activeTab, setActiveTab] = useState(0); 
+  const [activeTab, setActiveTab] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
   const [newMessage, setNewMessage] = useState('');
   const [recipient, setRecipient] = useState('');
-  const { currentUser, userRole } = useAuth(); 
+  const { currentUser, userRole } = useAuth();
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -19,7 +20,10 @@ const InboxComponent = () => {
           const messagesCollectionRef = collection(db, 'messages');
           const q = query(messagesCollectionRef, where('recipient', '==', currentUser.email));
           const querySnapshot = await getDocs(q);
-          const fetchedMessages = querySnapshot.docs.map(doc => doc.data());
+          const fetchedMessages = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
           setMessages(fetchedMessages);
         } catch (error) {
           console.error('Error fetching messages:', error);
@@ -41,6 +45,7 @@ const InboxComponent = () => {
           sender: currentUser.email,
           recipient,
           text: newMessage,
+          status: 'in progress',
           timestamp: new Date(),
         });
         setNewMessage('');
@@ -54,6 +59,25 @@ const InboxComponent = () => {
     }
   };
 
+  const toggleMessage = (index) => {
+    setExpandedMessageIndex(expandedMessageIndex === index ? null : index);
+  };
+
+  const handleStatusToggle = async (messageId, currentStatus) => {
+    const newStatus = currentStatus === 'in progress' ? 'done' : 'in progress';
+    try {
+      const messageDocRef = doc(db, 'messages', messageId);
+      await updateDoc(messageDocRef, { status: newStatus });
+      setMessages(prevMessages =>
+        prevMessages.map(msg =>
+          msg.id === messageId ? { ...msg, status: newStatus } : msg
+        )
+      );
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
   return (
     <div className="Page">
       <header className="Top">
@@ -62,23 +86,42 @@ const InboxComponent = () => {
       </header>
       <section className="MainContent">
         <Tabs value={activeTab} onChange={handleTabChange}>
-          <Tab label="Inbox" />
-          {userRole === 'admin' && <Tab label="Compose" />}
+          <Tab label="Income" />
+          {userRole === 'admin' && <Tab label="Sent" />}
           <Tab label="Trash" />
         </Tabs>
         <div className="MessageBlock">
           {activeTab === 0 && (
             <>
-              <h3>Messages</h3>
+              <h4>Messages</h4>
               {messages.length === 0 ? (
                 <p>No messages.</p>
               ) : (
-                <ul>
+                <ul className="MessageList">
                   {messages.map((msg, index) => (
-                    <li key={index}>
-                      <strong>From:</strong> {msg.sender}<br />
-                      <strong>Message:</strong> {msg.text}<br />
-                      <strong>Sent at:</strong> {new Date(msg.timestamp.toDate()).toLocaleString()}
+                    <li
+                      key={msg.id}
+                      className={`MessageItem ${expandedMessageIndex === index ? 'active' : ''}`}
+                      onClick={() => toggleMessage(index)}
+                    >
+                      <div className="MessageHeader">
+                        <span>{msg.sender}</span>
+                        <span className="MessageDate">
+                          {new Date(msg.timestamp.toDate()).toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="MessageDetails">
+                        {msg.text.slice(0, 50)}{msg.text.length > 50 ? '...' : ''}
+                      </div>
+                      <div className="MessageContent">
+                        {msg.text}
+                      </div>
+                      <button 
+                        className={`status-toggle ${msg.status}`} 
+                        onClick={() => handleStatusToggle(msg.id, msg.status)}
+                      >
+                        {msg.status}
+                      </button>
                     </li>
                   ))}
                 </ul>
