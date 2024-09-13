@@ -8,36 +8,24 @@ const Homepage = () => {
     <div className="homepage">
       <MenuBar />
       <div className="cards-container">
-        <div className="card folder-card">
-          <Link to="folders/b1">
+          <Link to="folders/b1" className="card folder-card">
             <h3>B1</h3>
           </Link>
-        </div>
-        <div className="card folder-card">
-          <Link to="folders/f1">
+          <Link to="folders/f1" className='card folder-card'>
             <h3>F1</h3>
           </Link>
-        </div>
-        <div className="card folder-card">
-          <Link to="folders/clientdb">
+          <Link to="folders/clientdb" className='card folder-card'>
             <h3>ClientDB</h3>
           </Link>
-        </div>
-        <div className="card folder-card">
-          <Link to="folders/greencard">
+          <Link to="folders/greencard" className='card folder-card'>
             <h3>GreenCard</h3>
           </Link>
-        </div>
-        <div className="card folder-card">
-          <Link to="folders/interview">
+          <Link to="folders/interview" className='card folder-card'>
             <h3>Interview</h3>
           </Link>
-        </div>
-        <div className="card folder-card">
-          <Link to="folders/workmaterials">
+          <Link to="folders/workmaterials" className='card folder-card'>
             <h3>WorkMaterials</h3>
           </Link>
-        </div>
       </div>
       <Outlet />
     </div>
