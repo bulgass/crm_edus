@@ -111,8 +111,8 @@ const InboxComponent = () => {
       <section className="MainContent">
         <Tabs value={activeTab} onChange={handleTabChange}>
           <Tab label="Income" />
-          {userRole === 'admin' && <Tab label="Send" />}
-          <Tab label="Sent" />
+          {userRole === 'admin' && <Tab label="Send" /> && <Tab label="Sent" />}
+          
           <Tab label="Trash" />
         </Tabs>
         <div className="MessageBlock">
