@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 
 export const MenuBar = () => {
   const navigate = useNavigate();
-  const { logout, currentUser } = useAuth(); // Обновите useAuth, чтобы получать currentUser
+  const { logout, userRole } = useAuth(); 
 
   const handleLogout = async () => {
     try {
@@ -46,7 +46,7 @@ export const MenuBar = () => {
           <span className="sidebar-icon">⚙️</span>
           Settings
         </li>
-        {currentUser && currentUser.role === 'admin' && (
+        {userRole === 'admin' && ( 
           <li className="sidebar-item" onClick={handleUsersClick}>
             <span className="sidebar-icon">👥</span>
             Users

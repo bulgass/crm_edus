@@ -3,6 +3,7 @@ import { Tabs, Tab, Button, TextField, Menu, MenuItem } from '@mui/material';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import "./profile.css";
 
 const db = getFirestore();
 const auth = getAuth();
@@ -17,7 +18,6 @@ const ProfileComponent = () => {
   const [showUsernameForm, setShowUsernameForm] = useState(false);
   const [showProfilePicForm, setShowProfilePicForm] = useState(false);
 
-  // New state and handlers for tasks
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [isLoadingTasks, setIsLoadingTasks] = useState(false);
@@ -292,7 +292,6 @@ const ProfileComponent = () => {
           )}
           {activeTab === 2 && (
             <div className="files-section">
-              {/* Files content */}
             </div>
           )}
         </div>

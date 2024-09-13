@@ -19,18 +19,17 @@ export const AuthProvider = ({ children }) => {
       if (user) {
         setCurrentUser(user);
         try {
-          // Получите роль пользователя из Firestore
           const userDoc = await getDoc(doc(db, 'users', user.uid));
           if (userDoc.exists()) {
-            console.log('User Document Data:', userDoc.data()); // Добавьте это для отладки
+            console.log('User Document Data:', userDoc.data()); 
             setUserRole(userDoc.data().role);
           } else {
-            console.log('No such document!'); // Документ не найден
+            console.log('No such document!'); 
             setUserRole(null);
           }
         } catch (error) {
           console.error('Error fetching user role:', error.message);
-          setUserRole(null); // Установите значение по умолчанию в случае ошибки
+          setUserRole(null); 
         }
       } else {
         setCurrentUser(null);

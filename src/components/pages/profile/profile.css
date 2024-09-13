@@ -11,14 +11,15 @@
 }
 
 .profile-header img {
-    width: 150px; /* Fixed width */
-    height: 150px; /* Fixed height */
-    object-fit: cover; /* Maintain aspect ratio */
-    border-radius: 50%; /* Circular shape */
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 2px solid #ccc; /* Optional: adds a border around the profile picture */
 }
 
 .profile-info {
-    margin-left: 20px; /* Space between image and text */
+    margin-left: 20px;
 }
 
 .profile-name {
@@ -44,5 +45,5 @@
 
 .username-form.show, .profile-pic-form.show {
     opacity: 1;
-    max-height: 200px; /* Adjust as needed */
+    max-height: 200px; 
 }
