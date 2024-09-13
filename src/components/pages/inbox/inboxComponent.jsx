@@ -87,7 +87,8 @@ const InboxComponent = () => {
       <section className="MainContent">
         <Tabs value={activeTab} onChange={handleTabChange}>
           <Tab label="Income" />
-          {userRole === 'admin' && <Tab label="Sent" />}
+          {userRole === 'admin' && <Tab label="Send" />}
+          <Tab label="Sent"></Tab>
           <Tab label="Trash" />
         </Tabs>
         <div className="MessageBlock">
@@ -153,7 +154,7 @@ const InboxComponent = () => {
                 onClick={handleSendMessage}
                 style={{ marginTop: 10 }}
               >
-                Send
+                
               </Button>
             </div>
           )}
