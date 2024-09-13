@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase'; 
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../../providers/authProvider/authProvider';
+import Loader from '../../submodules/Loader/loader';
 import "./checkUsers.css";
 
 const CheckUsers = () => {
@@ -36,7 +37,7 @@ const CheckUsers = () => {
   }, [userRole]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   return (
