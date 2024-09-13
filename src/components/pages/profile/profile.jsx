@@ -3,7 +3,6 @@ import ProfileComponent from './profileComponent';
 const Profile = () => {
   return (
     <div>
-
       <ProfileComponent/>
     </div>
   );
