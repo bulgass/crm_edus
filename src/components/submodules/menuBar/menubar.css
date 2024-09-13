@@ -3,9 +3,11 @@
   width: 20rem;
   padding: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #3f3f3f;
+  border-radius: 15px;
+  background-color: #cacaca;
   transition: width 0.3s ease;
   position: relative;
+  z-index: 10000;
 }
 
 .sidebar.closed {
@@ -51,6 +53,7 @@
   cursor: pointer;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease;
+  margin-bottom: 50%;
 }
 
 .sidebar-item:hover {

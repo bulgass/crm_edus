@@ -1,0 +1,7 @@
+.homepageComponent{
+    display: flex;
+}
+.header_home{
+    position: absolute;
+    left: 200px;
+}
