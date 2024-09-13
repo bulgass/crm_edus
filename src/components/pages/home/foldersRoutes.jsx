@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import B1Page from './folders/B1/B1Page';
-import F1Page from './folders/F1/F1Page';
-import ClientDBPage from './folders/ClientDB/ClientDBPage';
-import GreenCardPage from './folders/GreenCard/GreenCardPage';
-import InterviewPage from './folders/Interview/InterviewPage';
-import WorkMaterialsPage from './folders/WorkMaterials/WorkMaterialsPage';
+import B1Page from './folders/B1/b1';
+import F1Page from './folders/F1/f1';
+import ClientDBPage from './folders/ClientDB/client';
+import GreenCardPage from './folders/GreenCard/greencard';
+import InterviewPage from './folders/Interview/interview';
+import WorkMaterialsPage from './folders/Workmaterials/workmaterials'; 
 
 const FoldersRoutes = () => {
   return (
