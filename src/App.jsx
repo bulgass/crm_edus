@@ -1,13 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useAuth } from './providers/authProvider/authProvider'; 
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { useAuth } from "./providers/authProvider/authProvider";
 import Login from "./components/pages/auth/login/login";
 import Signup from "./components/pages/auth/signup/signup";
-import Homepage from "./components/pages/home/homepage"; 
-import Profile from './components/pages/profile/profile';
-import CheckUsers from './components/pages/checkUsers/checkUsers'; 
-import Inbox from './components/pages/inbox/inbox';
-import FoldersRoutes from './components/pages/home/foldersRoutes'; 
+import Homepage from "./components/pages/home/homepage";
+import Profile from "./components/pages/profile/profile";
+import CheckUsers from "./components/pages/checkUsers/checkUsers";
+import Inbox from "./components/pages/inbox/inbox";
+import FoldersRoutes from "./components/pages/home/foldersRoutes";
 import "./App.css";
 
 function App() {
@@ -22,8 +27,9 @@ function App() {
               <Route path="/" element={<Homepage />}>
                 <Route path="folders/*" element={<FoldersRoutes />} />
               </Route>
+
               <Route path="/profile" element={<Profile />} />
-              {userRole === 'admin' && (
+              {userRole === "admin" && (
                 <Route path="/check-users" element={<CheckUsers />} />
               )}
               <Route path="/inbox" element={<Inbox />} />
