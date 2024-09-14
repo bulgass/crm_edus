@@ -32,5 +32,8 @@
     transform: scale(1.05);
 }
 
+.info-content {
+    margin-left: 20px;
+}
 
 

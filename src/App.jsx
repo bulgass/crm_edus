@@ -24,8 +24,10 @@ function App() {
         <Routes>
           {currentUser ? (
             <>
-              <Route path="/" element={<Homepage />}></Route>
-              <Route path="folders/*" element={<FoldersRoutes />} />
+              <Route path="/" element={<Homepage />}>
+                <Route path="folders/*" element={<FoldersRoutes />} />
+              </Route>
+
               <Route path="/profile" element={<Profile />} />
               {userRole === "admin" && (
                 <Route path="/check-users" element={<CheckUsers />} />
