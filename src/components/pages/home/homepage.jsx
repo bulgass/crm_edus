@@ -27,6 +27,9 @@ const Homepage = () => {
           <Link to="folders/interview" className="card folder-card">
             <h3>Interview</h3>
           </Link>
+          <Link to="folder/flex" className="card folder-card">
+            <h3>Flex</h3>
+          </Link>
           <Link to="folders/workmaterials" className="card folder-card">
             <h3>WorkMaterials</h3>
           </Link>

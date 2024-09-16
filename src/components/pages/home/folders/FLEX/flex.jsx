@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Flex = () => {
+const FlexPage = () => {
   return (
     <div>
         <h1>Hello</h1>
@@ -8,4 +8,4 @@ const Flex = () => {
   );
 };
 
-export default Flex;
+export default FlexPage;

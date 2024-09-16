@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';
+import Loader from "../../submodules/Loader/loader";
 
 const HomepageComponent = () => {
   const [folders, setFolders] = useState({
@@ -23,6 +24,10 @@ const HomepageComponent = () => {
     fetchFolders();
   }, []);
 
+  if (loading) {
+    return <Loader/>;
+  }
+  
   return (
     <div>
       {/* Логика для отображения данных папок или управления ими */}
