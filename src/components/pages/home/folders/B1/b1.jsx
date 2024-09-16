@@ -46,6 +46,7 @@ const B1Page = () => {
     <div>
       <Typography variant="h4" gutterBottom>
         B1
+        <hr></hr>
       </Typography>
       <Tabs value={activeTab} onChange={handleTabChange}>
         <Tab label="In Progress" />

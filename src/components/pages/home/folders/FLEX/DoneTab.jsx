@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
+import Loader from '../../../../submodules/Loader/loader';
 
 const DoneTab = () => {
   const [clients, setClients] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
+        setLoading(true);
         const doneCollectionRef = collection(db, 'clients/Flex/Done');
         const querySnapshot = await getDocs(doneCollectionRef);
         const clientsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setClients(clientsList);
       } catch (error) {
         console.error('Error fetching clients: ', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -29,6 +34,10 @@ const DoneTab = () => {
       console.error('Error deleting client: ', error);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div>

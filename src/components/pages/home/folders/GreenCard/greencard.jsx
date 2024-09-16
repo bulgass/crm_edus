@@ -46,6 +46,7 @@ const GreenCardPage = () => {
     <div>
       <Typography variant="h4" gutterBottom>
         GreenCard
+        <hr></hr>
       </Typography>
       <Tabs value={activeTab} onChange={handleTabChange}>
         <Tab label="In Progress" />

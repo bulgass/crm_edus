@@ -46,6 +46,7 @@ const FlexPage = () => {
     <div>
       <Typography variant="h4" gutterBottom>
         Flex
+        <hr></hr>
       </Typography>
       <Tabs value={activeTab} onChange={handleTabChange}>
         <Tab label="In Progress" />
