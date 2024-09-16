@@ -10,7 +10,8 @@ const B1Page = () => {
     lastName: '',
     middleName: '',
     city: '',
-    serviceType: ''
+    serviceType: '',
+    phoneNumber: '',
   });
 
   const handleOpen = () => setOpen(true);
@@ -24,7 +25,7 @@ const B1Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, 'clients/B1'), formData);
+      const docRef = await addDoc(collection(db, 'clients/category/B1'), formData);
       console.log('Document written with ID: ', docRef.id);
     } catch (error) {
       console.error('Error adding document: ', error);
@@ -37,14 +38,15 @@ const B1Page = () => {
       <Typography variant="h4" gutterBottom>
         B1
       </Typography>
+      <hr style={{ border: '1px solid black', margin: '20px 0' }} />
       <Button variant="contained" color="primary" onClick={handleOpen}>
-        New client
+        New Client
       </Button>
 
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
           <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
-            New client
+            New Client
           </Typography>
           <form onSubmit={handleSubmit}>
             <Stack spacing={2}>
@@ -58,7 +60,7 @@ const B1Page = () => {
               />
               <TextField
                 fullWidth
-                label="Second Name"
+                label="Last Name"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
@@ -66,7 +68,7 @@ const B1Page = () => {
               />
               <TextField
                 fullWidth
-                label="Middle name"
+                label="Middle Name"
                 name="middleName"
                 value={formData.middleName}
                 onChange={handleInputChange}
@@ -74,7 +76,7 @@ const B1Page = () => {
               />
               <TextField
                 fullWidth
-                label="Город"
+                label="City"
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
@@ -82,14 +84,22 @@ const B1Page = () => {
               />
               <TextField
                 fullWidth
-                label="Тип услуги"
+                label="Service Type"
                 name="serviceType"
                 value={formData.serviceType}
                 onChange={handleInputChange}
                 required
               />
+              <TextField
+                fullWidth
+                label="Phone Number"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                required
+              />
               <Button type="submit" variant="contained" color="primary">
-                Сохранить
+                Save
               </Button>
             </Stack>
           </form>
@@ -98,7 +108,6 @@ const B1Page = () => {
     </div>
   );
 };
-
 
 const modalStyle = {
   position: 'absolute',
