@@ -7,6 +7,10 @@ h2 {
     margin-bottom: 20px;
 }
 
+hr{
+  color:#ccc;
+}
+
 .table-container {
     max-width: 1200px; 
     margin: 0 auto; 

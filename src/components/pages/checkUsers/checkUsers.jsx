@@ -43,6 +43,7 @@ const CheckUsers = () => {
   return (
     <div>
       <h2>Registered Users</h2>
+      <hr/>
       {users.length === 0 ? (
         <div>No users found.</div>
       ) : (
