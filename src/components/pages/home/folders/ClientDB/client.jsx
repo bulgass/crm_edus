@@ -15,17 +15,13 @@ const Client = () => {
         const clientsList = [];
 
         for (const mainCollection of mainCollections) {
-          // Get Inprogress and Done collections for each main collection
           const inProgressRef = collection(db, `clients/${mainCollection}/Inprogress`);
           const doneRef = collection(db, `clients/${mainCollection}/Done`);
 
-          // Fetch Inprogress documents
           const inProgressSnapshot = await getDocs(inProgressRef);
           inProgressSnapshot.forEach(doc => {
             clientsList.push({ id: doc.id, ...doc.data(), collection: `Inprogress (${mainCollection})` });
           });
-
-          // Fetch Done documents
           const doneSnapshot = await getDocs(doneRef);
           doneSnapshot.forEach(doc => {
             clientsList.push({ id: doc.id, ...doc.data(), collection: `Done (${mainCollection})` });
@@ -49,6 +45,8 @@ const Client = () => {
 
   return (
     <div>
+      <h1>Clients data base</h1>
+      <hr/>
       <table>
         <thead>
           <tr>
