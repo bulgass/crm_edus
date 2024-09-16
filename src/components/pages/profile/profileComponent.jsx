@@ -209,6 +209,7 @@ const ProfileComponent = () => {
 
   return (
     <div className="profile-page">
+       <pre><b>Version: 0.12.1(Beta)</b></pre>
       <div className="main-content">
         <div className="profile-header">
           <img src={profilePic || 'default-profile-pic-url'} alt="Profile" />
