@@ -29,16 +29,23 @@ const InProgressTab = () => {
     try {
       const inProgressDocRef = doc(db, 'clients/B1/InProgress', client.id);
       const doneDocRef = doc(db, 'clients/B1/Done', client.id);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6de2a8ad4242b75d6aa6bcbe3411268e4f31b478
       const clientSnapshot = await getDoc(inProgressDocRef);
       if (!clientSnapshot.exists()) {
         console.error('Client not found in InProgress');
         return;
       }
+<<<<<<< HEAD
 
       await setDoc(doneDocRef, clientSnapshot.data());
 
+=======
+      await setDoc(doneDocRef, clientSnapshot.data());
+>>>>>>> 6de2a8ad4242b75d6aa6bcbe3411268e4f31b478
       await deleteDoc(inProgressDocRef);
 
       setClients(prevClients => prevClients.filter(c => c.id !== client.id));
