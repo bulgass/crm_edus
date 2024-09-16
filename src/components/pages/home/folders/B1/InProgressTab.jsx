@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
+import Loader from '../../../../submodules/Loader/loader';
 
 const InProgressTab = () => {
   const [clients, setClients] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
+        setLoading(true);
         const inProgressCollectionRef = collection(db, 'clients/B1/InProgress');
         const querySnapshot = await getDocs(inProgressCollectionRef);
         const clientsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setClients(clientsList);
       } catch (error) {
         console.error('Error fetching clients: ', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -37,6 +42,10 @@ const InProgressTab = () => {
       console.error('Error moving client to Done: ', error);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div>
