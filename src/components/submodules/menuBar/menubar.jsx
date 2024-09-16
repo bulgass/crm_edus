@@ -39,7 +39,7 @@ export const MenuBar = () => {
         {isOpen ? '❮' : '❯'}
       </button>
       <ul className="sidebar-list">
-        <li className="sidebar-item" onClick={handleProfileClick}>
+        <li className="sidebar-item" >
           <span className="sidebar-icon">📊</span>
           {isOpen && 'Dashboard'}
         </li>
