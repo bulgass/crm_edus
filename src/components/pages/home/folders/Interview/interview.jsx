@@ -46,6 +46,7 @@ const InterviewPage = () => {
     <div>
       <Typography variant="h4" gutterBottom>
         Interview
+        <hr></hr>
       </Typography>
       <Tabs value={activeTab} onChange={handleTabChange}>
         <Tab label="In Progress" />
