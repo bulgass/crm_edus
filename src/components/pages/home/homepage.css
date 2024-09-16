@@ -1,5 +1,6 @@
 .homepage {
     display: flex;
+    margin-left: -20%;
 }
 
 .cards-container {
