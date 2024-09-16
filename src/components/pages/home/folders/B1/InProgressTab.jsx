@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
 import Loader from '../../../../submodules/Loader/loader';
 
@@ -29,14 +29,20 @@ const InProgressTab = () => {
     try {
       const inProgressDocRef = doc(db, 'clients/B1/InProgress', client.id);
       const doneDocRef = doc(db, 'clients/B1/Done', client.id);
-      const clientSnapshot = await inProgressDocRef.get();
+
+      // Get the client document from InProgress
+      const clientSnapshot = await getDoc(inProgressDocRef);
       if (!clientSnapshot.exists()) {
-        console.error('Client not found');
+        console.error('Client not found in InProgress');
         return;
       }
-      await updateDoc(doneDocRef, clientSnapshot.data());
 
+      // Create or update the document in Done
+      await setDoc(doneDocRef, clientSnapshot.data());
+
+      // Delete the document from InProgress
       await deleteDoc(inProgressDocRef);
+
       setClients(prevClients => prevClients.filter(c => c.id !== client.id));
     } catch (error) {
       console.error('Error moving client to Done: ', error);
