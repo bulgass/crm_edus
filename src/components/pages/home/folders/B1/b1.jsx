@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Modal, Typography, Stack } from '@mui/material';
-import { db } from '../../../../../firebase'; 
-import { collection, addDoc } from 'firebase/firestore';
+import React, { useState, lazy, Suspense } from 'react';
+import { Box, Button, Tab, Tabs, Typography, TextField, Modal, Stack } from '@mui/material';
+import { collection, addDoc, doc } from 'firebase/firestore';
+import { db } from '../../../../../firebase';
+
+const InProgressTab = lazy(() => import('./InProgressTab'));
+const DoneTab = lazy(() => import('./DoneTab'));
 
 const B1Page = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -13,6 +17,10 @@ const B1Page = () => {
     serviceType: '',
     phoneNumber: '',
   });
+
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,8 +33,9 @@ const B1Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, 'clients/category/B1'), formData);
-      console.log('Document written with ID: ', docRef.id);
+      const b1DocRef = doc(db, 'clients', 'B1'); 
+      const inProgressCollectionRef = collection(b1DocRef, 'InProgress'); // Collection within B1 document
+      await addDoc(inProgressCollectionRef, formData);
     } catch (error) {
       console.error('Error adding document: ', error);
     }
@@ -38,11 +47,26 @@ const B1Page = () => {
       <Typography variant="h4" gutterBottom>
         B1
       </Typography>
-      <hr style={{ border: '1px solid black', margin: '20px 0' }} />
+      <Tabs value={activeTab} onChange={handleTabChange}>
+        <Tab label="In Progress" />
+        <Tab label="Done" />
+      </Tabs>
+      <Box sx={{ p: 2 }}>
+        {activeTab === 0 && (
+          <Suspense fallback={<div>Loading In Progress...</div>}>
+            <InProgressTab onMoveToDone={() => setActiveTab(1)} />
+          </Suspense>
+        )}
+        {activeTab === 1 && (
+          <Suspense fallback={<div>Loading Done...</div>}>
+            <DoneTab />
+          </Suspense>
+        )}
+      </Box>
+
       <Button variant="contained" color="primary" onClick={handleOpen}>
         New Client
       </Button>
-
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
           <Typography variant="h6" component="h2" sx={{ mb: 2 }}>

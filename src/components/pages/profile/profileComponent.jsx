@@ -229,7 +229,7 @@ const ProfileComponent = () => {
                 variant="contained" 
                 onClick={() => {
                   setShowUsernameForm(true);
-                  setShowProfilePicForm(false); // Hide profile photo form
+                  setShowProfilePicForm(false);
                 }}
               >
                 Username
@@ -238,7 +238,7 @@ const ProfileComponent = () => {
                 variant="contained" 
                 onClick={() => {
                   setShowProfilePicForm(true);
-                  setShowUsernameForm(false); // Hide username form
+                  setShowUsernameForm(false); 
                 }}
                 startIcon={<AddPhotoAlternateIcon />}
               >
