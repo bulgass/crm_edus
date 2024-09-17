@@ -34,7 +34,9 @@
 .details-section {
     margin-top: 20px;
 }
-
+.details-section button{
+    margin-left: 20px;
+}
 .username-form, .profile-pic-form {
     opacity: 0;
     max-height: 0;
