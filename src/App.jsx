@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { useAuth } from "./providers/authProvider/authProvider";
 import Login from "./components/pages/auth/login/login";
-import Signup from "./components/pages/auth/signup/signup";
 import Homepage from "./components/pages/home/homepage";
 import Profile from "./components/pages/profile/profile";
 import CheckUsers from "./components/pages/checkUsers/checkUsers";
@@ -39,7 +38,6 @@ function App() {
           ) : (
             <>
               <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
             </>
           )}
