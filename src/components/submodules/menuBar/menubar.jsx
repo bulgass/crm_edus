@@ -35,6 +35,10 @@ export const MenuBar = () => {
     navigate('/inbox');
   };
 
+  const handleDashboardClick = () => {
+    navigate('/dashboard'); 
+  };
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -45,10 +49,12 @@ export const MenuBar = () => {
         {isOpen ? '❮' : '❯'}
       </button>
       <ul className="sidebar-list">
-        <li className="sidebar-item">
-          <DashboardIcon className="sidebar-icon" />
-          {isOpen && 'Dashboard'}
-        </li>
+        {userRole === 'admin' && (
+          <li className="sidebar-item" onClick={handleDashboardClick}>
+            <DashboardIcon className="sidebar-icon" />
+            {isOpen && 'Dashboard'}
+          </li>
+        )}
         <li className="sidebar-item" onClick={handleInboxClick}>
           <InboxIcon className="sidebar-icon" />
           {isOpen && 'Inbox'}

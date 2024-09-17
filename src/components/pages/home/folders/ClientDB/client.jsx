@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
 import Loader from '../../../../submodules/Loader/loader';
+import Searcher from '../../../../submodules/searcher/searcher';
 
 const Client = () => {
   const [clients, setClients] = useState([]);
@@ -47,6 +48,7 @@ const Client = () => {
     <div>
       <h1>Clients data base</h1>
       <hr/>
+      <Searcher/>
       <table>
         <thead>
           <tr>

@@ -1,5 +1,4 @@
 .sidebar {
-  /* height: calc(100vh - 2rem); */
   height: 100%;
   width: 15rem;
   padding: 1rem;
@@ -49,7 +48,7 @@
 
 .sidebar-item {
   display: flex;
-  align-content: center;
+  align-items: center; /* Выравниваем иконки по центру */
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 0.25rem;
@@ -61,12 +60,10 @@
 }
 
 .sidebar-icon {
-  margin-bottom: 20%;
-  display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 0.5rem;
   font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .sidebar.closed .sidebar-icon {
@@ -75,11 +72,10 @@
   width: 100%;
 }
 
-.sidebar-item span + span {
-  display: none;
+.sidebar-item .sidebar-text {
+  display: inline-block;
 }
 
-.sidebar.open .sidebar-item span + span {
-  display: inline-block;
-  margin-left: 0.5rem;
+.sidebar.closed .sidebar-text {
+  display: none; 
 }

@@ -12,7 +12,9 @@ import Profile from "./components/pages/profile/profile";
 import CheckUsers from "./components/pages/checkUsers/checkUsers";
 import Inbox from "./components/pages/inbox/inbox";
 import FoldersRoutes from "./components/pages/home/foldersRoutes";
+import Dashboard from "./components/systemWatcher/systemWatcher";
 import "./App.css";
+import SystemWatcher from "./components/systemWatcher/systemWatcher";
 
 function App() {
   const { currentUser, userRole } = useAuth();
@@ -29,7 +31,10 @@ function App() {
 
               <Route path="/profile" element={<Profile />} />
               {userRole === "admin" && (
-                <Route path="/check-users" element={<CheckUsers />} />
+                <>
+                  <Route path="/check-users" element={<CheckUsers />} />
+                  <Route path="/dashboard" element={<SystemWatcher />} /> 
+                </>
               )}
               <Route path="/inbox" element={<Inbox />} />
               <Route path="/login" element={<Navigate to="/" />} />
