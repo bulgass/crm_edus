@@ -24,12 +24,10 @@ const SystemWatcherComponent = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Получение коллекции 'clients'
         const clientsCollectionRef = collection(db, 'clients');
         const clientsSnapshot = await getDocs(clientsCollectionRef);
         const clientsList = clientsSnapshot.docs.map(doc => doc.id);
 
-        // Получение данных из коллекции 'ClientDB' для каждого документа в 'clients'
         let totalReads = 0;
         let totalWrites = 0;
         
@@ -39,7 +37,6 @@ const SystemWatcherComponent = () => {
           totalReads += clientDbSnapshot.size;
         }
 
-        // Примерное значение для writes, можно заменить на реальное значение
         const writes = 5;
 
         setStats({
