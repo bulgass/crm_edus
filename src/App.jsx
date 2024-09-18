@@ -12,9 +12,10 @@ import Profile from "./components/pages/profile/profile";
 import CheckUsers from "./components/pages/checkUsers/checkUsers";
 import Inbox from "./components/pages/inbox/inbox";
 import FoldersRoutes from "./components/pages/home/foldersRoutes";
-import Dashboard from "./components/systemWatcher/systemWatcher";
-import "./App.css";
 import SystemWatcher from "./components/systemWatcher/systemWatcher";
+import SettingsComponent from "./components/pages/settings/settings"; 
+import BackgroundColorSettings from "./components/pages/settings/backgoundColorSettings";
+import "./App.css";
 
 function App() {
   const { currentUser, userRole } = useAuth();
@@ -27,6 +28,11 @@ function App() {
             <>
               <Route path="/" element={<Homepage />}>
                 <Route path="folders/*" element={<FoldersRoutes />} />
+              </Route>
+
+              <Route path="/settings" element={<SettingsComponent />}>
+                <Route path="background-color" element={<BackgroundColorSettings />} />
+                
               </Route>
 
               <Route path="/profile" element={<Profile />} />

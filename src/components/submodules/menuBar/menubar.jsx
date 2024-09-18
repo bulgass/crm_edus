@@ -39,6 +39,10 @@ export const MenuBar = () => {
     navigate('/dashboard'); 
   };
 
+  const handleSettingsClick = () => {
+    navigate('/settings');
+  };
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -63,7 +67,7 @@ export const MenuBar = () => {
           <PersonIcon className="sidebar-icon" />
           {isOpen && 'Profile'}
         </li>
-        <li className="sidebar-item">
+        <li className="sidebar-item" onClick={handleSettingsClick}>
           <SettingsIcon className="sidebar-icon" />
           {isOpen && 'Settings'}
         </li>
